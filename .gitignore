@@ -1,27 +1,19 @@
-# Rust / Cargo
-/target/
+# Build artifacts
 **/target/
-Cargo.lock
-**/Cargo.lock
-
-# Trunk (frontend)
-/dist/
 **/dist/
 
-# Variables de entorno (¡MUY importante con datos sensibles!)
+# Environment files
 .env
-.env.local
-*.env
+.env.*
+!.env.example
 
-# IDE
+# Logs
+*.log
+
+# IDE / OS
 .vscode/
 .idea/
 *.swp
 *.swo
-
-# Sistema operativo
 .DS_Store
 Thumbs.db
-
-# Logs
-*.log/target
