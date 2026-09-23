@@ -1,0 +1,20 @@
+pub mod accounts;
+pub mod create_account;
+pub mod dashboard;
+pub mod deposit;
+pub mod login;
+pub mod nav;
+pub mod not_found;
+pub mod transactions;
+pub mod transfer;
+pub mod withdraw;
+
+pub use accounts::AccountsPage;
+pub use create_account::CreateAccountPage;
+pub use dashboard::DashboardPage;
+pub use deposit::DepositPage;
+pub use login::LoginPage;
+pub use not_found::NotFoundPage;
+pub use transactions::TransactionsPage;
+pub use transfer::TransferPage;
+pub use withdraw::WithdrawPage;
