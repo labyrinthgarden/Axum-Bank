@@ -1,6 +1,6 @@
 pub mod accounts;
 pub mod create_account;
-pub mod dashboard;
+pub mod home;
 pub mod deposit;
 pub mod login;
 pub mod nav;
@@ -11,7 +11,7 @@ pub mod withdraw;
 
 pub use accounts::AccountsPage;
 pub use create_account::CreateAccountPage;
-pub use dashboard::DashboardPage;
+pub use home::HomePage;
 pub use deposit::DepositPage;
 pub use login::LoginPage;
 pub use not_found::NotFoundPage;

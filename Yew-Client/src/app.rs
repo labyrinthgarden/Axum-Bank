@@ -4,7 +4,7 @@ use yew::prelude::*;
 
 use crate::{
     pages::{
-        AccountsPage, CreateAccountPage, DashboardPage, DepositPage, LoginPage, NotFoundPage,
+        AccountsPage, CreateAccountPage, HomePage, DepositPage, LoginPage, NotFoundPage,
         TransactionsPage, TransferPage, WithdrawPage, nav::route_link,
     },
     route::Route,
@@ -64,7 +64,7 @@ pub fn App() -> Html {
         Callback::from(move |_| {
             let _ = LocalStorage::set(AUTH_STORAGE_KEY, true);
             logged_in.set(true);
-            on_navigate.emit(Route::Dashboard);
+            on_navigate.emit(Route::Home);
         })
     };
 
@@ -83,7 +83,7 @@ pub fn App() -> Html {
 
     match guarded_route {
         Route::Login => html! { <LoginPage on_login={on_login} /> },
-        Route::Dashboard
+        Route::Home
         | Route::Accounts
         | Route::CreateAccount
         | Route::Transactions
@@ -92,7 +92,7 @@ pub fn App() -> Html {
         | Route::Transfer
         | Route::NotFound => {
             let content = match guarded_route {
-                Route::Dashboard => html! { <DashboardPage on_navigate={on_navigate.clone()} /> },
+                Route::Home => html! { <HomePage on_navigate={on_navigate.clone()} /> },
                 Route::Accounts => html! { <AccountsPage /> },
                 Route::CreateAccount => html! { <CreateAccountPage /> },
                 Route::Transactions => html! { <TransactionsPage /> },
@@ -115,19 +115,11 @@ fn app_shell(on_logout: Callback<()>, on_navigate: Callback<Route>, content: Htm
     html! {
         <main class="container">
             <header class="header">
-                <nav class="top-nav">
-                    <div>
-                        <h1>{ "Axum Bank" }</h1>
-                        <p class="subtitle">{ "Simple, Safety." }</p>
-                    </div>
-                    <div class="top-nav-links">
-                        { route_link("Transfer", Route::Transfer, "top-nav-link", on_navigate.clone()) }
-                        { route_link("Deposit", Route::Deposit, "top-nav-link", on_navigate.clone()) }
-                        { route_link("Withdraw", Route::Withdraw, "top-nav-link", on_navigate.clone()) }
-                        { route_link("Transactions", Route::Transactions, "top-nav-link", on_navigate.clone()) }
-                    </div>
-                    <button class="secondary" type="button" onclick={on_logout_click}>{ "Logout" }</button>
-                </nav>
+                <div>
+                    <h1>{ "Axum Bank" }</h1>
+                    <p class="subtitle">{ "Simple, Safe." }</p>
+                </div>
+                <button type="button" onclick={on_logout_click}>{ "Logout" }</button>
             </header>
 
 
@@ -149,7 +141,7 @@ fn guard_route(route: &Route, logged_in: bool) -> Route {
     }
 
     match route {
-        Route::Root | Route::Login => Route::Dashboard,
+        Route::Root | Route::Login => Route::Home,
         _ => route.clone(),
     }
 }

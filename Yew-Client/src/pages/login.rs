@@ -54,15 +54,14 @@ pub fn LoginPage(props: &LoginPageProps) -> Html {
             <header class="header">
                 <div>
                     <h1>{ "Axum Bank" }</h1>
-                    <p class="subtitle">{ "Please sign in to access banking operations." }</p>
+                    <p class="subtitle">{ "Please sign in." }</p>
                 </div>
-                <span class="badge">{ "Public" }</span>
             </header>
 
             { render_notice((*notice).clone()) }
 
             <section class="grid">
-                <article class="card half auth-card">
+                <article class="card auth-card">
                     <h2>{ "Login" }</h2>
                     <form onsubmit={on_submit}>
                         <label>

@@ -2,7 +2,7 @@
 pub enum Route {
     Root,
     Login,
-    Dashboard,
+    Home,
     Accounts,
     CreateAccount,
     Transactions,
@@ -17,7 +17,7 @@ impl Route {
         match hash {
             "" | "#" | "#/" => Self::Root,
             "#/login" => Self::Login,
-            "#/dashboard" => Self::Dashboard,
+            "#/home" => Self::Home,
             "#/accounts" => Self::Accounts,
             "#/accounts/new" => Self::CreateAccount,
             "#/transactions" => Self::Transactions,
@@ -32,7 +32,7 @@ impl Route {
         match self {
             Self::Root => "/",
             Self::Login => "/login",
-            Self::Dashboard => "/dashboard",
+            Self::Home => "/home",
             Self::Accounts => "/accounts",
             Self::CreateAccount => "/accounts/new",
             Self::Transactions => "/transactions",
@@ -50,7 +50,7 @@ impl Route {
     pub fn requires_auth(&self) -> bool {
         matches!(
             self,
-            Self::Dashboard
+            Self::Home
                 | Self::Accounts
                 | Self::CreateAccount
                 | Self::Transactions
