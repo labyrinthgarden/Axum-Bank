@@ -26,8 +26,8 @@ pub struct LedgerEntry {
 
 #[derive(Debug, Deserialize)]
 pub struct CreateAccountRequest {
-    pub owner_name: String,
-    pub initial_balance: Option<Decimal>,
+  pub owner_name: String,
+  pub initial_balance: Option<Decimal>,
 }
 
 #[derive(Debug, Deserialize)]
