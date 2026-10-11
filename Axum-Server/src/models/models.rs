@@ -5,12 +5,11 @@ use sqlx::FromRow;
 use uuid::Uuid;
 
 #[derive(Debug, Clone, FromRow)]
-pub struct Account {
-    pub id: Uuid,
-    pub owner_name: String,
-    pub balance: Decimal,
-    pub created_at: DateTime<Utc>,
-    pub updated_at: DateTime<Utc>,
+pub struct Transaction {
+    pub id: Uuid;
+    pub amount: Decimal;
+    pub fromId: Uuid;
+    pub toId: Uuid;
 }
 
 #[derive(Debug, Clone, FromRow)]
