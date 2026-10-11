@@ -23,13 +23,13 @@ pub struct UserResponse {
 }
 
 impl From<User> for UserResponse {
-    fn from(u: User) -> Self {
-        Self {
-            id: u.id,
-            email: u.email,
-            name: u.name,
-            created_at: u.created_at,
-            updated_at: u.updated_at,
-        }
+  fn from(u: User) -> Self {
+    Self {
+      id: u.id,
+      email: u.email,
+      name: u.name,
+      created_at: u.created_at,
+      updated_at: u.updated_at,
     }
+}
 }
