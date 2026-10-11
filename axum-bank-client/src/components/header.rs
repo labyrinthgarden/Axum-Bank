@@ -4,10 +4,10 @@ use yew::prelude::*;
 pub fn header() -> Html {
   html! {
     <header class="header">
-        <div>
-            <h1>{ "Axum Bank" }</h1>
-            <p class="subtitle">{ "Simple, Safe" }</p>
-        </div>
+      <div>
+        <h1>{ "Axum Bank" }</h1>
+        <p class="subtitle">{ "Simple, Safe" }</p>
+      </div>
     </header>
   }
 }

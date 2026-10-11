@@ -148,15 +148,15 @@ button {
 }
 
 input{
-    font-size:1.2rem;
-    background:transparent;
-    border:none;
-    border-bottom: 1px solid var(--muted);
-    placeholder:white;
-    color:var(--text);
+  font-size:1.2rem;
+  background:transparent;
+  border:none;
+  border-bottom: 1px solid var(--muted);
+  placeholder:white;
+  color:var(--text);
 }
 input::placeholder{
-    color: var(--muted);
+  color: var(--muted);
 }
 input:focus,
 select:focus {
