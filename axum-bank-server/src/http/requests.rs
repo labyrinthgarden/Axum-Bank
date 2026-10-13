@@ -21,3 +21,10 @@ pub struct DepositMoneyRequest {
   pub amount:Decimal,
   pub description:Option<String>
 }
+
+#[derive(Debug,Deserialize)]
+pub struct WithdrawMoneyRequest {
+  pub account_id:Uuid,
+  pub amount:Decimal,
+  pub description:Option<String>
+}

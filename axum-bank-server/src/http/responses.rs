@@ -19,6 +19,11 @@ pub struct DepositMoneyResponse{
   pub ledger_entry_id:Uuid,
 }
 
+#[derive(Debug,Serialize)]
+pub struct WithdrawMoneyResponse{
+  pub ledger_entry_id:Uuid
+}
+
 /// DTO de respuesta para leer un usuario.
 /// Este es el "read model" del lado de lectura.
 #[derive(Debug, Serialize)]
