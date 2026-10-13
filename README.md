@@ -1,5 +1,5 @@
 # Axum Bank
-A CQRS Rust banking system:
+A full stack banking system in Rust, built with Yew, Axum, CQRS and PostgreSQL.
 
 ![Yew](https://img.shields.io/badge/Yew-4BB8A5?style=for-the-badge&logo=rust&logoColor=white)
 ![Axum](https://img.shields.io/badge/Axum-000000?style=for-the-badge&logo=rust&logoColor=white)

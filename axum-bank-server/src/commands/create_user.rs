@@ -2,8 +2,8 @@ use uuid::Uuid;
 use crate::{error::AppError,models::User,state::AppState};
 
 pub struct CreateUserCommand {
-  pub email: String,
-  pub name: String
+  pub email:String,
+  pub name:String
 }
 
 pub struct CreateUserResult {

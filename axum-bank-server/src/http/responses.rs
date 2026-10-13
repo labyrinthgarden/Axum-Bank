@@ -4,22 +4,30 @@ use uuid::Uuid;
 
 use crate::models::User;
 
-/// DTO de respuesta para crear un usuario.
-/// En CQRS, el command devuelve solo el ID.
 #[derive(Debug, Serialize)]
-pub struct CreateUserResponse {
-    pub user_id: Uuid,
+pub struct CreateUserResponse{
+  pub user_id:Uuid
+}
+
+#[derive(Debug,Serialize)]
+pub struct CreateAccountResponse{
+  pub account_number:String
+}
+
+#[derive(Debug, Serialize)]
+pub struct DepositMoneyResponse{
+  pub ledger_entry_id:Uuid,
 }
 
 /// DTO de respuesta para leer un usuario.
 /// Este es el "read model" del lado de lectura.
 #[derive(Debug, Serialize)]
 pub struct UserResponse {
-    pub id: Uuid,
-    pub email: String,
-    pub name: String,
-    pub created_at: DateTime<Utc>,
-    pub updated_at: DateTime<Utc>,
+  pub id: Uuid,
+  pub email: String,
+  pub name: String,
+  pub created_at: DateTime<Utc>,
+  pub updated_at: DateTime<Utc>,
 }
 
 impl From<User> for UserResponse {
@@ -31,5 +39,5 @@ impl From<User> for UserResponse {
       created_at: u.created_at,
       updated_at: u.updated_at,
     }
-}
+  }
 }

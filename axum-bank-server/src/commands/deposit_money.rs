@@ -92,7 +92,7 @@ pub async fn execute(state: &AppState, cmd: DepositMoneyCommand) -> Result<Depos
 
   tx.commit().await?;
 
-  Ok(DepositMoneyResult { ledger_entry_id })
+  Ok(DepositMoneyResult {ledger_entry_id})
 }
 
 fn validate_description(description: Option<String>) -> Result<Option<String>, AppError> {

@@ -1,19 +1,19 @@
 use axum::{
-    Json,
-    extract::{Path, State},
-    http::StatusCode,
+  Json,
+  extract::{Path, State},
+  http::StatusCode,
 };
 use rust_decimal::Decimal;
 use sqlx::{Postgres, Transaction};
 use uuid::Uuid;
 
 use crate::{
-    AppState,
-    error::AppError,
-    models::{
-        Account, AccountResponse, BalanceMutationRequest, CreateAccountRequest, LedgerEntry,
-        TransactionResponse, TransferRequest, TransferResponse,
-    },
+  AppState,
+  error::AppError,
+  models::{
+    Account, AccountResponse, BalanceMutationRequest, CreateAccountRequest, LedgerEntry,
+    TransactionResponse, TransferRequest, TransferResponse,
+  },
 };
 
 const MAX_DESCRIPTION_LENGTH: usize = 255;
