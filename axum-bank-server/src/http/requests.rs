@@ -28,3 +28,11 @@ pub struct WithdrawMoneyRequest {
   pub amount:Decimal,
   pub description:Option<String>
 }
+
+#[derive(Debug,Deserialize)]
+pub struct TransferMoneyRequest{
+  pub from_account_id:Uuid,
+  pub amount:Decimal,
+  pub to_account_id:Uuid,
+  pub description:Option<String>
+}

@@ -3,7 +3,6 @@ use uuid::Uuid;
 
 use crate::{error::AppError, state::AppState};
 
-// Debe coincidir con NUMERIC(20, 4) de las columnas de dinero del esquema.
 const MONEY_SCALE: u32 = 4;
 const MAX_WITHDRAW_AMOUNT: i64 = 1_000_000;
 const MAX_DESCRIPTION_LENGTH: usize = 255;

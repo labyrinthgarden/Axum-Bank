@@ -35,10 +35,7 @@ async fn create_user_handler(State(state):State<AppState>,Json(req):Json<CreateU
 
   let result=commands::create_user::execute(&state,cmd).await?;
 
-  Ok((
-    StatusCode::CREATED,
-    Json(CreateUserResponse{user_id:result.user_id}),
-  ))
+  Ok((StatusCode::CREATED,Json(CreateUserResponse{user_id:result.user_id})))
 }
 
 async fn create_account_handler(State(state):State<AppState>,Json(req):Json<CreateAccountRequest>)->Result<(StatusCode,Json<CreateAccountResponse>),AppError>{
