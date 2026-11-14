@@ -1,16 +1,14 @@
 # Axum Bank
-A full stack banking system in Rust, built with Yew, Axum, CQRS and PostgreSQL.
+Banking infrastructure server built with Rust, Axum and PostgreSQL, following hexagonal architecture and repository patterns.
 
 ![Yew](https://img.shields.io/badge/Yew-4BB8A5?style=for-the-badge&logo=rust&logoColor=white)
+![Iced](https://img.shields.io/badge/Iced-3645FF?style=for-the-badge&logo=rust&logoColor=white)
 ![Axum](https://img.shields.io/badge/Axum-000000?style=for-the-badge&logo=rust&logoColor=white)
 ![Rust](https://img.shields.io/badge/Rust-CE422B?style=for-the-badge&logo=rust&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
-
 # Previews
-![Vista 1](resources/1.png)
-![Vista 2](resources/2.png)
 
 ## Architecture
 

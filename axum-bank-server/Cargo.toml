@@ -16,11 +16,14 @@ sqlx = { version = "0.8", default-features = false, features = ["runtime-tokio-r
 uuid = { version = "1", features = ["v4", "serde"] }
 chrono = { version = "0.4", features = ["serde"] }
 rust_decimal = "1"
-####
 dotenvy = "0.15"
+async-trait = "0.1"
+anyhow = "1"
+thiserror = "2"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 # tower-http = { version = "0.6", features = ["cors", "trace"] }
 # tracing = "0.1"
 # tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt"] }
-# dotenvy = "0.15"
 # thiserror = "2.0"
 # rust_decimal = { version = "1", features = ["serde-str"] }

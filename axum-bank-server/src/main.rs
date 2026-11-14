@@ -1,35 +1,37 @@
-mod commands;
-mod error;
-mod http;
-mod models;
-mod queries;
-mod state;
+use std::sync::Arc;
 
-use sqlx::postgres::PgPoolOptions;
-use state::AppState;
+use axum_bank_server::{
+  app_state::AppState,
+  application::use_cases::create_account::CreateAccountUseCase,
+  config::Config,
+  infrastructure::{
+    http::router::build_router,
+    persistence::pg_account_repository::PgAccountRepository,
+  },
+};
+use sqlx::PgPool;
 
 #[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    dotenvy::dotenv().ok();
+async fn main() -> anyhow::Result<()> {
+  dotenvy::dotenv().ok();
+  tracing_subscriber::fmt()
+    .with_env_filter(tracing_subscriber::EnvFilter::from_default_env())
+    .init();
 
-    let database_url = std::env::var("DATABASE_URL")
-        .expect("DATABASE_URL must be set");
+  let config = Config::from_env()?;
+  let pool = PgPool::connect(&config.database_url).await?;
+  sqlx::migrate!("./migrations").run(&pool).await?;
 
-    let pool = PgPoolOptions::new()
-        .max_connections(10)
-        .connect(&database_url)
-        .await?;
+  let repo = Arc::new(PgAccountRepository::new(pool));
+  let create_account_uc = Arc::new(CreateAccountUseCase::new(repo));
 
-    // Ejecuta migraciones automáticamente al arrancar
-    sqlx::migrate!("./migrations").run(&pool).await?;
+  let state = AppState {
+    create_account: create_account_uc,
+  };
 
-    let state = AppState { db: pool };
-
-    let app = http::routes::router().with_state(state);
-
-    let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await?;
-    println!("Server running on http://0.0.0.0:3000");
-    axum::serve(listener, app).await?;
-
-    Ok(())
+  let app = build_router(state);
+  let listener = tokio::net::TcpListener::bind(&config.server_addr).await?;
+  tracing::info!("listening on {}", config.server_addr);
+  axum::serve(listener, app).await?;
+  Ok(())
 }
