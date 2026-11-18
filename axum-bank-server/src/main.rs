@@ -3,6 +3,7 @@ use std::sync::Arc;
 use axum_bank_server::{
   app_state::AppState,
   application::use_cases::create_account::CreateAccountUseCase,
+  application::use_cases::get_account::GetAccountUseCase,
   config::Config,
   infrastructure::{
     http::router::build_router,
@@ -23,10 +24,12 @@ async fn main() -> anyhow::Result<()> {
   sqlx::migrate!("./migrations").run(&pool).await?;
 
   let repo = Arc::new(PgAccountRepository::new(pool));
-  let create_account_uc = Arc::new(CreateAccountUseCase::new(repo));
+  let create_account_uc = Arc::new(CreateAccountUseCase::new(repo.clone()));
+  let get_account_uc = Arc::new(GetAccountUseCase::new(repo));
 
   let state = AppState {
     create_account: create_account_uc,
+    get_account: get_account_uc,
   };
 
   let app = build_router(state);
