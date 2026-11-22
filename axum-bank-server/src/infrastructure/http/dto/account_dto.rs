@@ -28,3 +28,9 @@ impl From<Account> for AccountResponse {
 pub struct DepositRequest {
   pub amount_cents: i64
 }
+
+#[derive(Deserialize)]
+pub struct TransferRequest {
+  pub amount_cents: i64,
+  pub account_to_id: String
+}

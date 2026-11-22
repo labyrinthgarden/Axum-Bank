@@ -29,12 +29,14 @@ async fn main() -> anyhow::Result<()> {
 
   let create_account_uc = Arc::new(CreateAccountUseCase::new(Arc::clone(&repo)));
   let get_account_uc = Arc::new(GetAccountUseCase::new(Arc::clone(&repo)));
-  let deposit_uc = Arc::new(DepositUseCase::new(repo));
+  let deposit_uc = Arc::new(DepositUseCase::new(Arc::clone(&repo)));
+  let transfer_uc = Arc::new(TransferUseCase::new(repo));
 
   let state = AppState {
     create_account: create_account_uc,
     get_account: get_account_uc,
-    deposit: deposit_uc
+    deposit: deposit_uc,
+    transfer: transfer_uc
   };
 
   let app = build_router(state);

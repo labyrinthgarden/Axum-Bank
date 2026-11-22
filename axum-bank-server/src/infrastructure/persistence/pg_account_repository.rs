@@ -89,4 +89,32 @@ impl AccountRepository for PgAccountRepository {
     })
     .ok_or_else(|| DomainError::NotFound(format!("account {}", id)))
   }
+
+  async fn transfer(&self,from_account_id:Uuid,to_account_id:Uuid,amount_cents:i64) -> Result<Account,DomainError> {
+    let row=sqlx::query!(
+      r#"
+      UPDATE accounts
+      SET balance = balance - $3
+      WHERE id = $1
+      SET balance = balance + $3
+      WHERE id = $2
+      RETURNING id, account_number, currency, balance, created_at
+      "#,
+      from_account_id,
+      to_account_id,
+      amount_cents
+    )
+    .fetch_option(&self.pool)
+    .await
+    .map_err(|e| DomainError::Infrastructure(e.to_string()))?;
+
+    row.map(|r| Account {
+      id: r.id,
+      account_number: r.account_number,
+      currency: r.currency,
+      balance: r.balance,
+      created_at: r.created_at
+    })
+    .ok_or_else(|| DomainError::NotFound(format!("account {}", id)))
+  }
 }
