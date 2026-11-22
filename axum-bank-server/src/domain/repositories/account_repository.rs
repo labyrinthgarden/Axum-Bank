@@ -7,4 +7,5 @@ use crate::domain::errors::DomainError;
 pub trait AccountRepository: Send + Sync {
   async fn save(&self,account:&Account) -> Result<Account,DomainError>;
   async fn find_by_id(&self,id:Uuid) -> Result<Option<Account>,DomainError>;
+  async fn deposit(&self,id:Uuid,amount_cents:i64) -> Result<Account,DomainError>;
 }

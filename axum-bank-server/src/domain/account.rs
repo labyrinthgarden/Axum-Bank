@@ -7,6 +7,6 @@ pub struct Account{
   pub id:Uuid,
   pub account_number:String,
   pub currency:String,
-  pub balance:Decimal,
+  pub balance:i64,
   pub created_at:DateTime<Utc>
 }

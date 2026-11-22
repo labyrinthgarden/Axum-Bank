@@ -64,4 +64,29 @@ impl AccountRepository for PgAccountRepository {
       created_at: r.created_at,
     }))
   }
+
+  async fn deposit(&self,id:Uuid,amount_cents:i64) -> Result<Account,DomainError> {
+    let row=sqlx::query!(
+      r#"
+      UPDATE accounts
+      SET balance = balance + $1
+      WHERE id = $2
+      RETURNING id, account_number, currency, balance, created_at
+      "#,
+      amount_cents,
+      id
+    )
+    .fetch_optional(&self.pool)
+    .await
+    .map_err(|e| DomainError::Infrastructure(e.to_string()))?;
+
+    row.map(|r| Account {
+      id: r.id,
+      account_number: r.account_number,
+      currency: r.currency,
+      balance: r.balance,
+      created_at: r.created_at
+    })
+    .ok_or_else(|| DomainError::NotFound(format!("account {}", id)))
+  }
 }

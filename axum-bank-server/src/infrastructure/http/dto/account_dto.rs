@@ -10,7 +10,7 @@ pub struct CreateAccountRequest {
 #[derive(Serialize)]
 pub struct AccountResponse {
   pub id: String,
-  pub balance: Decimal,
+  pub balance: i64,
   pub created_at: String,
 }
 
@@ -22,4 +22,9 @@ impl From<Account> for AccountResponse {
       created_at: a.created_at.to_rfc3339(),
     }
   }
+}
+
+#[derive(Deserialize)]
+pub struct DepositRequest {
+  pub amount_cents: i64
 }

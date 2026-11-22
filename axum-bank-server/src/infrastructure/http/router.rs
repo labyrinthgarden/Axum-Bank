@@ -1,11 +1,12 @@
 use axum::{routing::{get,post}, Router};
 
 use crate::app_state::AppState;
-use crate::infrastructure::http::handlers::account_handler::{create_account,get_account};
+use crate::infrastructure::http::handlers::account_handler::{create_account,get_account,deposit};
 
 pub fn build_router(state: AppState) -> Router {
   Router::new()
     .route("/accounts", post(create_account))
     .route("/accounts/{id}",get(get_account))
+    .route("/account/{id}/deposit",post(deposit))
     .with_state(state)
 }

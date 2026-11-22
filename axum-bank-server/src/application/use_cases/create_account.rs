@@ -24,7 +24,7 @@ impl CreateAccountUseCase {
       id: Uuid::new_v4(),
       account_number: generate_account_number(),
       currency:"USD".to_string(),
-      balance: Decimal::new(0000,2),
+      balance: 0,
       created_at: Utc::now(),
     };
     self.repo.save(&account).await

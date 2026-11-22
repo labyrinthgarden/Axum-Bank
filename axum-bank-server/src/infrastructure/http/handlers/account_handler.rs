@@ -3,7 +3,7 @@ use uuid::Uuid;
 
 use crate::app_state::AppState;
 use crate::errors::app_error::AppError;
-use crate::infrastructure::http::dto::account_dto::{AccountResponse, CreateAccountRequest};
+use crate::infrastructure::http::dto::account_dto::{AccountResponse, CreateAccountRequest, DepositRequest};
 
 pub async fn create_account(
   State(state): State<AppState>,
@@ -18,5 +18,14 @@ pub async fn get_account(
   Path(id): Path<Uuid>,
 ) -> Result<Json<AccountResponse>,AppError>{
   let account = state.get_account.execute(id).await?;
+  Ok(Json(AccountResponse::from(account)))
+}
+
+pub async fn deposit(
+  State(state): State<AppState>,
+  Path(id): Path<Uuid>,
+  Json(payload): Json<DepositRequest>
+) -> Result<Json<AccountResponse>,AppError> {
+  let account = state.deposit.execute(id,payload.amount_cents).await?;
   Ok(Json(AccountResponse::from(account)))
 }

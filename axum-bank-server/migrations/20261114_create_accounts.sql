@@ -2,7 +2,7 @@ CREATE TABLE accounts (
   id UUID PRIMARY KEY,
   account_number TEXT NOT NULL UNIQUE,
   currency CHAR(3) NOT NULL,
-  balance NUMERIC(20, 4) NOT NULL DEFAULT 0,
+  balance BIGINT NOT NULL DEFAULT 0,
   status TEXT NOT NULL DEFAULT 'active',
   type TEXT NOT NULL DEFAULT 'checking',
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
