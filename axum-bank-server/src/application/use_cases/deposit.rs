@@ -15,9 +15,9 @@ impl DepositUseCase {
   }
 
   pub async fn execute(&self,id:Uuid,amount_cents:i64) -> Result<Account,DomainError> {
-    if amount_cents <=0 {
+    if amount_cents <=1 {
       return Err(DomainError::Validation(
-        "deposit amount must be greater than zero".into()
+        "deposit amount must be greater than 1".into()
       ));
     }
 

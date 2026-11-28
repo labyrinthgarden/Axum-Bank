@@ -7,5 +7,8 @@ pub enum DomainError {
   NotFound(String),
 
   #[error("infrastructure error: {0}")]
-  Infrastructure(String)
+  Infrastructure(String),
+
+  #[error("insufficient funds")]
+  InsufficientFunds
 }

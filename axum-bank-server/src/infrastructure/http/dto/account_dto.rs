@@ -34,3 +34,8 @@ pub struct TransferRequest {
   pub amount_cents: i64,
   pub account_to_id: String
 }
+
+#[derive(Deserialize)]
+pub struct WithdrawRequest {
+  pub amount_cents: i64
+}
